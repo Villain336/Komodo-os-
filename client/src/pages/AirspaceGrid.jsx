@@ -1,7 +1,10 @@
+import { lazy, Suspense } from 'react';
 import useKomodoStore from '../stores/useKomodoStore';
-import AirspaceMap from '../components/map/AirspaceMap';
+import ErrorBoundary from '../components/shared/ErrorBoundary';
 import ThreatBadge from '../components/shared/ThreatBadge';
 import styles from './AirspaceGrid.module.css';
+
+const AirspaceMap = lazy(() => import('../components/map/AirspaceMap'));
 
 export default function AirspaceGrid() {
   const zones = useKomodoStore((s) => s.zones);
@@ -13,7 +16,11 @@ export default function AirspaceGrid() {
   return (
     <div className={styles.page}>
       <div className={styles.mapArea}>
-        <AirspaceMap />
+        <ErrorBoundary>
+          <Suspense fallback={<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#7a8ba8', fontFamily: 'monospace' }}>Loading map...</div>}>
+            <AirspaceMap />
+          </Suspense>
+        </ErrorBoundary>
       </div>
       <div className={styles.sidebar}>
         <div className={styles.section}>

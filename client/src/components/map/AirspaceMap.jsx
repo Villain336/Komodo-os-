@@ -37,30 +37,44 @@ export default function AirspaceMap() {
   const markersRef = useRef({});
   const popupRef = useRef(null);
   const [mapLoaded, setMapLoaded] = useState(false);
+  const [mapError, setMapError] = useState(null);
 
   const zones = useKomodoStore((s) => s.zones);
   const tracks = useKomodoStore((s) => s.tracks);
   const setSelectedTrack = useKomodoStore((s) => s.setSelectedTrack);
 
+  const hasToken = Boolean(mapboxgl.accessToken);
+
   // Initialize map
   useEffect(() => {
+    if (!hasToken) return;
     if (mapRef.current || !mapContainer.current) return;
 
-    const map = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/dark-v11',
-      center: [-106.74, 32.38],
-      zoom: 11,
-      pitch: 30,
-      bearing: -15,
-      antialias: true,
-    });
+    let map;
+    try {
+      map = new mapboxgl.Map({
+        container: mapContainer.current,
+        style: 'mapbox://styles/mapbox/dark-v11',
+        center: [-106.74, 32.38],
+        zoom: 11,
+        pitch: 30,
+        bearing: -15,
+        antialias: true,
+      });
+    } catch (err) {
+      setMapError(err.message);
+      return;
+    }
 
     map.addControl(new mapboxgl.NavigationControl({ showCompass: true }), 'top-right');
     map.addControl(new mapboxgl.ScaleControl({ unit: 'metric' }), 'bottom-right');
 
     map.on('load', () => {
       setMapLoaded(true);
+    });
+
+    map.on('error', (e) => {
+      console.error('[KOMODO] Map error:', e.error?.message || e);
     });
 
     mapRef.current = map;
@@ -249,6 +263,24 @@ export default function AirspaceMap() {
       }
     });
   }, [tracks, mapLoaded, setSelectedTrack]);
+
+  if (!hasToken) {
+    return (
+      <div className={styles.mapContainer} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: 12, color: '#7a8ba8', fontFamily: 'monospace', fontSize: '0.8rem' }}>
+        <div style={{ color: '#f59e0b', fontWeight: 700, letterSpacing: '0.1em' }}>MAPBOX TOKEN REQUIRED</div>
+        <div>Set VITE_MAPBOX_TOKEN in client/.env and rebuild</div>
+      </div>
+    );
+  }
+
+  if (mapError) {
+    return (
+      <div className={styles.mapContainer} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: 12, color: '#7a8ba8', fontFamily: 'monospace', fontSize: '0.8rem' }}>
+        <div style={{ color: '#ef4444', fontWeight: 700, letterSpacing: '0.1em' }}>MAP ERROR</div>
+        <div>{mapError}</div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.mapContainer}>
