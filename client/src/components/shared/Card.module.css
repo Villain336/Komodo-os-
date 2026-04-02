@@ -1,0 +1,37 @@
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  transition: all var(--transition-fast);
+}
+
+.noPad {
+  padding: 0;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-secondary);
+}
+
+.critical {
+  border-left: 3px solid var(--red);
+}
+
+.warning {
+  border-left: 3px solid var(--yellow);
+}
+
+.info {
+  border-left: 3px solid var(--blue);
+}
+
+.emergency {
+  border-left: 3px solid var(--red);
+  background: rgba(239, 68, 68, 0.05);
+}

@@ -1,0 +1,122 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) var(--space-lg);
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-primary);
+  flex-shrink: 0;
+}
+
+.filters {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.select {
+  padding: 5px 10px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+  cursor: pointer;
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--blue);
+}
+
+.resultCount {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.tableWrap {
+  flex: 1;
+  overflow: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-xs);
+}
+
+.table th {
+  padding: var(--space-sm) var(--space-md);
+  background: var(--bg-primary);
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.table th:hover {
+  color: var(--text-primary);
+}
+
+.row {
+  border-bottom: 1px solid var(--border-primary);
+  transition: background var(--transition-fast);
+}
+
+.row:hover {
+  background: var(--bg-card-hover);
+}
+
+.hostile {
+  background: rgba(239, 68, 68, 0.03);
+}
+
+.hostile:hover {
+  background: rgba(239, 68, 68, 0.07);
+}
+
+.table td {
+  padding: var(--space-sm) var(--space-md);
+  white-space: nowrap;
+  color: var(--text-secondary);
+}
+
+.trackId {
+  font-weight: 700;
+  color: var(--text-primary) !important;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.sensor {
+  font-size: 0.6rem;
+}
+
+.time {
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted) !important;
+}
+
+.sortIcon {
+  font-size: 0.5rem;
+  margin-left: 4px;
+  color: var(--blue);
+}

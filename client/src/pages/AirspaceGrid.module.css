@@ -1,0 +1,158 @@
+.page {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+}
+
+.mapArea {
+  flex: 1;
+  position: relative;
+}
+
+.sidebar {
+  width: 300px;
+  background: var(--bg-secondary);
+  border-left: 1px solid var(--border-primary);
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.section {
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) var(--space-lg);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  background: var(--bg-primary);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.trackCount {
+  background: var(--blue-glow);
+  color: var(--blue);
+  border: 1px solid var(--blue-dim);
+  padding: 1px 8px;
+  border-radius: 10px;
+  font-size: 0.6rem;
+}
+
+.zoneList {
+  padding: var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.zoneCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  transition: all var(--transition-fast);
+}
+
+.zoneCard:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-secondary);
+}
+
+.zoneHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-sm);
+}
+
+.zoneName {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--text-bright);
+}
+
+.zoneDetails {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}
+
+.zoneDetail {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-xs);
+}
+
+.label {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.value {
+  font-size: 0.6rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.valueGreen {
+  font-size: 0.6rem;
+  color: var(--green);
+  font-weight: 600;
+}
+
+.trackList {
+  padding: var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.trackItem {
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.trackItem:hover {
+  background: var(--bg-card);
+}
+
+.trackSelected {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-secondary);
+}
+
+.trackHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.trackId {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.trackMeta {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.moreLink {
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--text-xs);
+  color: var(--blue);
+  cursor: pointer;
+  text-align: center;
+}
