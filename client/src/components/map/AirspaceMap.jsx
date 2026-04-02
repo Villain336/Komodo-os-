@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import mapboxgl from 'mapbox-gl';
 import { MapboxOverlay } from '@deck.gl/mapbox';
-import { ScatterplotLayer, ArcLayer, ColumnLayer, PolygonLayer, TextLayer } from '@deck.gl/layers';
+import { ScatterplotLayer, ArcLayer, ColumnLayer, PolygonLayer, TextLayer } from 'deck.gl';
 import useKomodoStore from '../../stores/useKomodoStore';
 import styles from './AirspaceMap.module.css';
 
