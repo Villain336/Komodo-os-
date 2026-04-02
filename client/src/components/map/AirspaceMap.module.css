@@ -9,8 +9,51 @@
   height: 100%;
 }
 
-.trackMarker {
-  transition: transform 0.3s ease;
+.hoverCard {
+  position: absolute;
+  top: 16px;
+  right: 60px;
+  background: rgba(12, 18, 32, 0.95);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  backdrop-filter: blur(12px);
+  z-index: 10;
+  min-width: 200px;
+  animation: fade-in 0.15s ease;
+}
+
+.hoverHeader {
+  font-weight: 800;
+  font-size: var(--text-sm);
+  margin-bottom: 4px;
+  letter-spacing: 0.05em;
+}
+
+.hoverMeta {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  margin-bottom: var(--space-sm);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.hoverGrid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3px 12px;
+  font-size: 0.65rem;
+}
+
+.hoverGrid span:nth-child(odd) {
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.hoverGrid span:nth-child(even) {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
 }
 
 .legend {
@@ -52,4 +95,11 @@
   height: 10px;
   border-radius: 50%;
   flex-shrink: 0;
+}
+
+.legendHint {
+  margin-top: 8px;
+  font-size: 0.55rem;
+  color: var(--text-muted);
+  font-style: italic;
 }
