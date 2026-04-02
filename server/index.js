@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const http = require('http');
 const WebSocket = require('ws');
@@ -11,6 +12,10 @@ const wss = new WebSocket.Server({ server, path: '/ws' });
 
 app.use(cors());
 app.use(express.json());
+
+// Serve built frontend
+const clientDist = path.join(__dirname, '..', 'client', 'dist');
+app.use(express.static(clientDist));
 
 // In-memory state
 const state = {
@@ -130,8 +135,13 @@ setInterval(() => {
   }
 }, 8000);
 
+// SPA fallback - serve index.html for all non-API routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(clientDist, 'index.html'));
+});
+
 const PORT = process.env.PORT || 4000;
-server.listen(PORT, () => {
+server.listen(PORT, '0.0.0.0', () => {
   console.log(`[KOMODO] Airspace Defense Server operational on port ${PORT}`);
   console.log(`[KOMODO] WebSocket feed active at ws://localhost:${PORT}/ws`);
   console.log(`[KOMODO] ${state.tracks.length} tracks | ${state.zones.length} zones | ${state.incursions.length} incursions loaded`);

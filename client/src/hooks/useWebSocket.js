@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
 import useKomodoStore from '../stores/useKomodoStore';
 
-const WS_URL = `ws://${window.location.hostname}:4000/ws`;
+const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+const WS_URL = `${wsProtocol}//${window.location.host}/ws`;
 const RECONNECT_DELAYS = [1000, 2000, 4000, 8000, 16000];
 
 export default function useWebSocket() {
